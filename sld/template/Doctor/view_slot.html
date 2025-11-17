@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <title>Doctor Consulting Schedule - View & Edit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="utf-8">
+
+<!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap & Template CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body {
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+  h2 {
+    text-align: center;
+  }
+  .card {
+      margin: auto;
+      max-width: 900px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  form {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    text-align: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #007bff;
+    color: white;
+  }
+  button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button.edit-btn {
+    background-color: #ffc107;
+    color: #333;
+  }
+  button.save-btn {
+    background-color: #28a745;
+    color: white;
+    display: none;
+  }
+  select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-width: 60px;
+  }
+  .time-inputs {
+    display: none;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .time-display {
+    font-weight: 600;
+  }
+  .time-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary">SMART SLD</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link"></a>
+                <a href="about.html" class="nav-item nav-link"></a>
+                <a href="service.html" class="nav-item nav-link"></a>
+                <a href="doctor/doctorlogin" class="nav-item nav-link"></a>
+            </div>
+            <a href="doctorhome" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Home <i class="fa fa-arrow-left ms-3"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+  
+
+     <div class="card">
+     <div class="card-header text-center bg-primary text-white">
+      <h4>Doctor Consulting schedule</h4>
+    </div>
+     <div class="card-body">
+<form id="consultingForm" action="#" method="POST">
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Consulting Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- Template for each day -->
+      <tr data-day="Monday">
+        <td>Monday</td>
+        <td>
+          <span class="time-display">9:00 AM - 12:00 PM</span>
+          <div class="time-inputs">
+            <select name="monday_start_hour" class="start-hour">
+              <!-- Hours options -->
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="monday_start_min" class="start-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="monday_start_ampm" class="start-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+            <span>to</span>
+            <select name="monday_end_hour" class="end-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="monday_end_min" class="end-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="monday_end_ampm" class="end-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="edit-btn">Edit</button>
+          <button type="button" class="save-btn">Save</button>
+        </td>
+      </tr>
+
+      <!-- Repeat for other days (Tuesday to Saturday) -->
+      <tr data-day="Tuesday">
+        <td>Tuesday</td>
+        <td>
+          <span class="time-display">1:00 PM - 5:00 PM</span>
+          <div class="time-inputs">
+            <select name="tuesday_start_hour" class="start-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="tuesday_start_min" class="start-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="tuesday_start_ampm" class="start-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+            <span>to</span>
+            <select name="tuesday_end_hour" class="end-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="tuesday_end_min" class="end-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="tuesday_end_ampm" class="end-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="edit-btn">Edit</button>
+          <button type="button" class="save-btn">Save</button>
+        </td>
+      </tr>
+
+      <tr data-day="Wednesday">
+        <td>Wednesday</td>
+        <td>
+          <span class="time-display">Not Available</span>
+          <div class="time-inputs">
+            <select name="wednesday_start_hour" class="start-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="wednesday_start_min" class="start-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="wednesday_start_ampm" class="start-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+            <span>to</span>
+            <select name="wednesday_end_hour" class="end-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="wednesday_end_min" class="end-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="wednesday_end_ampm" class="end-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="edit-btn">Edit</button>
+          <button type="button" class="save-btn">Save</button>
+        </td>
+      </tr>
+
+      <tr data-day="Thursday">
+        <td>Thursday</td>
+        <td>
+          <span class="time-display">10:00 AM - 2:00 PM</span>
+          <div class="time-inputs">
+            <select name="thursday_start_hour" class="start-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="thursday_start_min" class="start-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="thursday_start_ampm" class="start-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+            <span>to</span>
+            <select name="thursday_end_hour" class="end-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="thursday_end_min" class="end-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="thursday_end_ampm" class="end-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="edit-btn">Edit</button>
+          <button type="button" class="save-btn">Save</button>
+        </td>
+      </tr>
+
+      <tr data-day="Friday">
+        <td>Friday</td>
+        <td>
+          <span class="time-display">9:30 AM - 12:30 PM</span>
+          <div class="time-inputs">
+            <select name="friday_start_hour" class="start-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="friday_start_min" class="start-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="friday_start_ampm" class="start-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+            <span>to</span>
+            <select name="friday_end_hour" class="end-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="friday_end_min" class="end-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="friday_end_ampm" class="end-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="edit-btn">Edit</button>
+          <button type="button" class="save-btn">Save</button>
+        </td>
+      </tr>
+
+      <tr data-day="Saturday">
+        <td>Saturday</td>
+        <td>
+          <span class="time-display">Not Available</span>
+          <div class="time-inputs">
+            <select name="saturday_start_hour" class="start-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="saturday_start_min" class="start-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="saturday_start_ampm" class="start-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+            <span>to</span>
+            <select name="saturday_end_hour" class="end-hour">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+            </select> :
+            <select name="saturday_end_min" class="end-min">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+            <select name="saturday_end_ampm" class="end-ampm">
+              <option>AM</option><option>PM</option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="edit-btn">Edit</button>
+          <button type="button" class="save-btn">Save</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</form>
+</div>
+</div>
+
+<script>
+  // Initialize select inputs with the displayed time for each row
+  function initSelects(row) {
+    const timeDisplay = row.querySelector(".time-display").textContent.trim();
+    const timeInputs = row.querySelector(".time-inputs");
+
+    if (timeDisplay === "Not Available") {
+      // default values
+      setSelectValue(timeInputs, "start-hour", "9");
+      setSelectValue(timeInputs, "start-min", "00");
+      setSelectValue(timeInputs, "start-ampm", "AM");
+      setSelectValue(timeInputs, "end-hour", "5");
+      setSelectValue(timeInputs, "end-min", "00");
+      setSelectValue(timeInputs, "end-ampm", "PM");
+    } else {
+      // Parse displayed time e.g. "9:00 AM - 12:00 PM"
+      const parts = timeDisplay.split(" - ");
+      if (parts.length === 2) {
+        const [start, end] = parts;
+        fillTimeInputs(timeInputs, "start", start);
+        fillTimeInputs(timeInputs, "end", end);
+      }
+    }
+  }
+
+  function fillTimeInputs(container, prefix, timeStr) {
+    // timeStr example: "9:00 AM"
+    const [time, ampm] = timeStr.split(" ");
+    const [hour, min] = time.split(":");
+    setSelectValue(container, prefix + "-hour", hour);
+    setSelectValue(container, prefix + "-min", min);
+    setSelectValue(container, prefix + "-ampm", ampm);
+  }
+
+  function setSelectValue(container, className, value) {
+    const select = container.querySelector(`.${className}`);
+    if (select) select.value = value;
+  }
+
+  // On DOM ready
+  document.querySelectorAll("tbody tr").forEach(row => {
+    initSelects(row);
+
+    const editBtn = row.querySelector(".edit-btn");
+    const saveBtn = row.querySelector(".save-btn");
+    const timeDisplay = row.querySelector(".time-display");
+    const timeInputs = row.querySelector(".time-inputs");
+
+    editBtn.addEventListener("click", () => {
+      timeDisplay.style.display = "none";
+      timeInputs.style.display = "flex";
+      editBtn.style.display = "none";
+      saveBtn.style.display = "inline-block";
+    });
+
+    saveBtn.addEventListener("click", () => {
+      // Read the selected values
+      const startHour = row.querySelector(".start-hour").value;
+      const startMin = row.querySelector(".start-min").value;
+      const startAmpm = row.querySelector(".start-ampm").value;
+      const endHour = row.querySelector(".end-hour").value;
+      const endMin = row.querySelector(".end-min").value;
+      const endAmpm = row.querySelector(".end-ampm").value;
+
+      // Validate time or add any logic here (optional)
+
+      // Update display text
+      const newTime = `${startHour}:${startMin} ${startAmpm} - ${endHour}:${endMin} ${endAmpm}`;
+      timeDisplay.textContent = newTime;
+
+      // Hide inputs, show display
+      timeInputs.style.display = "none";
+      timeDisplay.style.display = "inline";
+      editBtn.style.display = "inline-block";
+      saveBtn.style.display = "none";
+    });
+  });
+</script>
+<!-- Script to enable/disable time fields -->
+  <script>
+    function toggleTime(day) {
+      const inputs = document.querySelectorAll(`[name^="${day.toLowerCase()}_"]`);
+      const isChecked = document.querySelector(`input[value="${day}"]`).checked;
+      inputs.forEach(input => {
+        if (!input.type || input.type !== 'checkbox') {
+          input.disabled = !isChecked;
+        }
+      });
+    }
+  </script>
+
+  <!-- Bootstrap JS (Optional, for interactivity) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

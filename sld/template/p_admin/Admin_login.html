@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Full-screen video background */
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 20px; /* padding for small screens */
+    }
+
+    .login-wrapper {
+      background-color: rgba(255, 255, 255, 0.8); /* semi-transparent */
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.6s ease;
+      backdrop-filter: blur(10px); /* frosted glass effect */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-wrapper h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #1e88e5;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #1e88e5;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #1565c0;
+    }
+
+    .error {
+      margin-top: 15px;
+      color: red;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 480px) {
+      .login-wrapper {
+        padding: 30px 20px;
+      }
+
+      .form-group input {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .login-btn {
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      .login-wrapper h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video Background -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="{% static 'videos/H-4.mp4' %}" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="container">
+    <div class="login-wrapper">
+      <h2>Admin Login</h2>
+      <form id="loginForm" method="POST" >
+        {% csrf_token %}
+         {% for message in messages %}
+                            <h3>{{ message }}</h3>
+                            {% endfor %}
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input type="email" name="email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+        <p class="error" id="errorMsg">⚠️ Invalid username or password</p>
+      </form>
+    </div>
+  </div>
+
+  {% comment %} <script>
+    function validateLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const adminUsername = "admin";
+      const adminPassword = "password123";
+
+      if (username === adminUsername && password === adminPassword) {
+        alert("Login successful!");
+        return true;
+      } else {
+        document.getElementById("errorMsg").style.display = "block";
+        return false;
+      }
+    }
+  </script> {% endcomment %}
+
+</body>
+</html>

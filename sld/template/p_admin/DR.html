@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{% static 'P_admin/assets/images/favicon.svg'%}" type="image/x-icon" />
+    <title>Sign In | Admin</title>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/lineicons.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/materialdesignicons.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/fullcalendar.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/main.css'%}" />
+  </head>
+  <body>
+    <!-- ======== Preloader =========== -->
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+    <!-- ======== Preloader =========== -->
+
+    <!-- ======== sidebar-nav start =========== -->
+    <aside class="sidebar-nav-wrapper">
+      <div class="navbar-logo">
+        <a href="index.html">
+          <img src="{% static 'P_admin/assets/images/logo/logo.svg'%}" alt="logo" />
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item nav-item-has-children">
+            <a
+              href="aadminhome" >
+              <span class="icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.74999 18.3333C12.2376 18.3333 15.1364 15.8128 15.7244 12.4941C15.8448 11.8143 15.2737 11.25 14.5833 11.25H9.99999C9.30966 11.25 8.74999 10.6903 8.74999 10V5.41666C8.74999 4.7263 8.18563 4.15512 7.50586 4.27556C4.18711 4.86357 1.66666 7.76243 1.66666 11.25C1.66666 15.162 4.83797 18.3333 8.74999 18.3333Z" />
+                  <path
+                    d="M17.0833 10C17.7737 10 18.3432 9.43708 18.2408 8.75433C17.7005 5.14918 14.8508 2.29947 11.2457 1.75912C10.5629 1.6568 10 2.2263 10 2.91665V9.16666C10 9.62691 10.3731 10 10.8333 10H17.0833Z" />
+                </svg>
+              </span>
+              <span class="text">Dashboard</span>
+            </a>
+           
+          </li>
+         
+             
+          
+      </nav>
+      
+    </aside>
+    <div class="overlay"></div>
+    <!-- ======== sidebar-nav end =========== -->
+
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+      <!-- ========== header start ========== -->
+      <header class="header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-6">
+              <div class="header-left d-flex align-items-center">
+                <div class="menu-toggle-btn mr-15">
+                  <button id="menu-toggle" class="main-btn primary-btn btn-hover">
+                    <i class="lni lni-chevron-left me-2"></i> Menu
+                  </button>
+                </div>
+               
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-6">
+              <div class="header-right">
+                <!-- notification start -->
+               
+                <!-- message end -->
+                <!-- profile start -->
+                <div class="profile-box ml-15">
+                  <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="profile-info">
+                      <div class="info">
+                        <div class="image">
+                          <img src="{% static 'P_admin/assets/images/profile/profile-image.png'%}" alt="" />
+                        </div>
+                        <div>
+                          <h6 class="fw-500">Thejas</h6>
+                          <p>Admin</p>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                    <li>
+                      <div class="author-info flex items-center !p-1">
+                        <div class="image">
+                          <img src="{% static 'P_admin/assets/images/profile/profile-image.png'%}" alt="image">
+                        </div>
+                        <div class="content">
+                          <h4 class="text-sm">Thejas</h4>
+                          <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs"
+                            href="#">Email@gmail.com</a>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <a href="/"> <i class="lni lni-exit"></i> Sign Out </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- profile end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ========== header end ========== -->
+
+      <!-- ========== signin-section start ========== -->
+      <section class="signin-section">
+        <div class="container-fluid">
+          <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+                           <CENTER>
+
+              <div class="col-md-6">
+                <div class="title">
+                  <h2>ADD DOCTOR DETAILS</h2>
+                </div>
+              </div>
+                          </CENTER>
+
+              <!-- end col -->
+               
+              {% comment %} <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="#0">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item"><a href="#0">Auth</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Sign in
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div> {% endcomment %}
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+          <div class="row g-0 auth-row">
+            <div class="col-lg-6">
+              {% comment %} <div class="auth-cover-wrapper bg-primary-100"> {% endcomment %}
+                {% comment %} <div class="auth-cover">
+                  <div class="title text-center">
+                    <h1 class="text-primary mb-10">Welcome Back</h1>
+                    <p class="text-medium">
+                      Sign in to your Existing account to continue
+                    </p>
+                  </div>
+                  <div class="cover-image">
+                    <img src="{% static 'P_admin/assets/images/auth/signin-image.svg'%}" alt="" />
+                  </div>
+                  <div class="shape-image">
+                    <img src="{% static 'P_admin/assets/images/auth/shape.svg'%}" alt="" />
+                  </div> {% endcomment %}
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+             <CENTER>
+            <div class="col-lg-6">
+              <div class="signin-wrapper">
+                <div class="form-wrapper">
+                  <h6 class="mb-15">Sign In Form</h6>
+                  <p class="text-sm mb-25">
+                    Signin to continue
+                  </p>
+                  <form  method="POST">
+                    {% csrf_token %}
+                   
+                    <div class="row">
+                         <div class="col-12">
+                        <div class="input-style-1">
+                          <label>First name</label>
+                          <input type="text" name="firstname" placeholder="First Name" />
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Last Name</label>
+                          <input type="text" name="lastname" placeholder="Last Name" />
+                        </div>
+                      </div>
+                        <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Gender</label>
+                     <select class="form-select border-0"  name="gender"style="height: 55px;">
+                                        <option selected>Gender</option>
+                                        <option value="12">Male</option>
+                                         <option value="12">Female</option>
+                                          </select>
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Contact Number</label>
+                          <input type="tel"  name="contactno"placeholder="Contact Number" />
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Address</label>
+                           <textarea id="message" name="message" rows="5" cols="40" placeholder="Type your message here..." required></textarea><br><br>
+                          
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Locality</label>
+                          <input type="text" name="locality"placeholder="Locality" />
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Designation</label>
+                          <input type="text" name="designation" placeholder="Designation" />
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Qualification</label>
+                          <input type="text" name="qualification" placeholder="Qualification" />
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Experience</label>
+                          <input type="number" name="exp" placeholder="In Years" />
+                        </div>
+                      </div>
+                       <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Current working place</label>
+                          <input type="tel" name="current_w_p" placeholder="Hospital/Institution/Practice Name" />
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Email</label>
+                          <input type="email"  name="email" placeholder="Email" />
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      
+                      <!-- end col -->
+                      <div class="col-xxl-6 col-lg-12 col-md-6">
+                        <div class="form-check checkbox-style mb-30">
+                          <input class="form-check-input" type="checkbox" value="" id="checkbox-remember" />
+                          <label class="form-check-label" for="checkbox-remember">
+                            Remember me next time</label>
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div class="button-group d-flex justify-content-center flex-wrap">
+                          <button class="main-btn primary-btn btn-hover w-100 text-center">
+                            Sign In
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end row -->
+                  </form>
+                  <div class="singin-option pt-40">
+                    
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CENTER>
+
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+        </div>
+      </section>
+      <!-- ========== signin-section end ========== -->
+
+      <!-- ========== footer start =========== -->
+      
+            <!-- end col-->
+            
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end container -->
+      </footer>
+      <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="{% static 'P_admin/assets/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/Chart.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/dynamic-pie-chart.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/moment.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/fullcalendar.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/jvectormap.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/world-merc.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/polyfill.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/main.js'%}"></script>
+  </body>
+</html>

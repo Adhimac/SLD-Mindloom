@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.svg'%}" type="image/x-icon" />
+    <title>Tables | Admin </title>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/lineicons.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/materialdesignicons.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/fullcalendar.css'%}" />
+    <link rel="stylesheet" href="{% static 'P_admin/assets/css/main.css'%}" />
+  </head>
+  <body>
+    <!-- ======== Preloader =========== -->
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+    <!-- ======== Preloader =========== -->
+
+    <!-- ======== sidebar-nav start =========== -->
+    <aside class="sidebar-nav-wrapper">
+      <div class="navbar-logo">
+        <a href="index.html">
+          <img src="{% static 'P_admin/assets/images/logo/logo.svg'%}" alt="logo" />
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item nav-item-has-children">
+            <a
+              href="aadminhome" >
+              <span class="icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.74999 18.3333C12.2376 18.3333 15.1364 15.8128 15.7244 12.4941C15.8448 11.8143 15.2737 11.25 14.5833 11.25H9.99999C9.30966 11.25 8.74999 10.6903 8.74999 10V5.41666C8.74999 4.7263 8.18563 4.15512 7.50586 4.27556C4.18711 4.86357 1.66666 7.76243 1.66666 11.25C1.66666 15.162 4.83797 18.3333 8.74999 18.3333Z" />
+                  <path
+                    d="M17.0833 10C17.7737 10 18.3432 9.43708 18.2408 8.75433C17.7005 5.14918 14.8508 2.29947 11.2457 1.75912C10.5629 1.6568 10 2.2263 10 2.91665V9.16666C10 9.62691 10.3731 10 10.8333 10H17.0833Z" />
+                </svg>
+              </span>
+              <span class="text">Dashboard</span>
+            </a>
+           
+          </li>
+        
+            
+           
+         
+      </nav>
+     
+    </aside>
+    <div class="overlay"></div>
+    <!-- ======== sidebar-nav end =========== -->
+
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+      <!-- ========== header start ========== -->
+      <header class="header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-6">
+              <div class="header-left d-flex align-items-center">
+                <div class="menu-toggle-btn mr-15">
+                  <button id="menu-toggle" class="main-btn primary-btn btn-hover">
+                    <i class="lni lni-chevron-left me-2"></i> Menu
+                  </button>
+                </div>
+             
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-6">
+              <div class="header-right">
+                <!-- notification start -->
+                
+                <!-- notification end -->
+                <!-- message start -->
+                
+                <!-- message end -->
+                <!-- profile start -->
+                <div class="profile-box ml-15">
+                  <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="profile-info">
+                      <div class="info">
+                        <div class="image">
+                          <img src="{% static 'P_admin/assets/images/profile/profile-image.png'%}" alt="" />
+                        </div>
+                        <div>
+                          <h6 class="fw-500">Thejas</h6>
+                          <p>Admin</p>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                    <li>
+                      <div class="author-info flex items-center !p-1">
+                        <div class="image">
+                          <img src="{% static 'P_admin/assets/images/profile/profile-image.png'%}" alt="image">
+                        </div>
+                        <div class="content">
+                          <h4 class="text-sm">User</h4>
+                          <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs"
+                            href="#">Email@gmail.com</a>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <a href="/"> <i class="lni lni-exit"></i> Sign Out </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- profile end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ========== header end ========== -->
+
+      <!-- ========== table components start ========== -->
+      <section class="table-components">
+        <div class="container-fluid">
+          <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title">
+                  <h2>Tables</h2>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="#0">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Tables
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+          <!-- ========== tables-wrapper start ========== -->
+          <div class="tables-wrapper">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card-style mb-30">
+                  <h6 class="mb-10">Data Table</h6>
+                  <p class="text-sm mb-20">
+                    For basic styling—light padding and only horizontal
+                    dividers—use the class table.
+                  </p>
+                  <div class="table-wrapper table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="lead-info">
+                            <h6>Doctor</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Email</h6>
+                          </th>
+                          <th class="lead-phone">
+                            <h6>Phone No</h6>
+                          </th>
+                          <th class="lead-company">
+                            <h6>Company</h6>
+                          </th>
+                          <th>
+                            <h6>Action</h6>
+                          </th>
+                        </tr>
+                        <!-- end table row-->
+                      </thead>
+                      <tbody>
+                        {% for j in D %}
+                        <tr>
+                          <td class="min-width">
+                            <div class="lead">
+                              <div class="lead-image">
+                                <img src="{% static 'P_admin/assets/images/lead/lead-1.png'%}" alt="" />
+                              </div>
+                              <div class="lead-text">
+                                <p>{{j.FirstName}}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="min-width">
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td class="min-width">
+                            <p>(303)555 3343523</p>
+                          </td>
+                          <td class="min-width">
+                            <p>UIdeck digital agency</p>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        {% endfor %}
+                        <!-- end table row -->
+                      </tbody>
+                    </table>
+                    <!-- end table -->
+                  </div>
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+
+           
+                        <!-- end table row-->
+                      
+                        <!-- end table row -->
+                      </tbody>
+                    </table>
+                    <!-- end table -->
+                  </div>
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+              <div class="col-lg-6">
+                <div class="card-style mb-30">
+                  <h6 class="mb-10">Table head options</h6>
+                  <p class="text-sm mb-20">
+                    Use one of two modifier classes to make thead appear light
+                    or dark gray.
+                  </p>
+                  <div class="table-wrapper table-responsive">
+                    <table class="table striped-table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>
+                            <h6>First Name</h6>
+                          </th>
+                          <th>
+                            <h6>Last Name</h6>
+                          </th>
+                          <th>
+                            <h6>Username</h6>
+                          </th>
+                        </tr>
+                        <!-- end table row-->
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h6 class="text-sm">#1</h6>
+                          </td>
+                          <td>
+                            <p>Albert</p>
+                          </td>
+                          <td>
+                            <p>Miles</p>
+                          </td>
+                          <td>
+                            <p>@albert_miles</p>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <h6 class="text-sm">#2</h6>
+                          </td>
+                          <td>
+                            <p>John</p>
+                          </td>
+                          <td>
+                            <p>Doe</p>
+                          </td>
+                          <td>
+                            <p>@john_doe</p>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <h6 class="text-sm">#3</h6>
+                          </td>
+                          <td>
+                            <p>David</p>
+                          </td>
+                          <td>
+                            <p>Smith</p>
+                          </td>
+                          <td>
+                            <p>@davidsmith</p>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <h6 class="text-sm">#4</h6>
+                          </td>
+                          <td>
+                            <p>Jameel</p>
+                          </td>
+                          <td>
+                            <p>Kareem</p>
+                          </td>
+                          <td>
+                            <p>@jkreem</p>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <h6 class="text-sm">#5</h6>
+                          </td>
+                          <td>
+                            <p>Anna</p>
+                          </td>
+                          <td>
+                            <p>Miles</p>
+                          </td>
+                          <td>
+                            <p>@anna_miles</p>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <h6 class="text-sm">#6</h6>
+                          </td>
+                          <td>
+                            <p>Hafiz</p>
+                          </td>
+                          <td>
+                            <p>Miles</p>
+                          </td>
+                          <td>
+                            <p>@hafiz_miles</p>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                      </tbody>
+                    </table>
+                    <!-- end table -->
+                  </div>
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card-style mb-30">
+                  <h6 class="mb-10">Data Table</h6>
+                  <p class="text-sm mb-20">
+                    For basic styling—light padding and only horizontal
+                    dividers—use the class table.
+                  </p>
+                  <div class="table-wrapper table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <h6>#</h6>
+                          </th>
+                          <th>
+                            <h6>Name</h6>
+                          </th>
+                          <th>
+                            <h6>Email</h6>
+                          </th>
+                          <th>
+                            <h6>Project</h6>
+                          </th>
+                          <th>
+                            <h6>Status</h6>
+                          </th>
+                          <th>
+                            <h6>Action</h6>
+                          </th>
+                        </tr>
+                        <!-- end table row-->
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="employee-image">
+                              <img src="{% static 'P_admin/assets/images/lead/lead-1.png'%}" alt="" />
+                            </div>
+                          </td>
+                          <td class="min-width">
+                            <p>Esther Howard</p>
+                          </td>
+                          <td class="min-width">
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td class="min-width">
+                            <p>Admin Dashboard Design</p>
+                          </td>
+                          <td class="min-width">
+                            <span class="status-btn active-btn">Active</span>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <div class="employee-image">
+                              <img src="{% static 'P_admin/assets/images/lead/lead-2.png'%}" alt="" />
+                            </div>
+                          </td>
+                          <td class="min-width">
+                            <p>D. Jonathon</p>
+                          </td>
+                          <td class="min-width">
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td class="min-width">
+                            <p>React Dashboard</p>
+                          </td>
+                          <td class="min-width">
+                            <span class="status-btn active-btn">Active</span>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <div class="employee-image">
+                              <img src="{% static 'P_admin/assets/images/lead/lead-3.png'%}" alt="" />
+                            </div>
+                          </td>
+                          <td>
+                            <p>John Doe</p>
+                          </td>
+                          <td>
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td>
+                            <p>Bootstrap Template</p>
+                          </td>
+                          <td>
+                            <span class="status-btn success-btn">Done</span>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <div class="employee-image">
+                              <img src="{% static 'P_admin/assets/images/lead/lead-4.png'%}" alt="" />
+                            </div>
+                          </td>
+                          <td>
+                            <p>Rayhan Jamil</p>
+                          </td>
+                          <td>
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td>
+                            <p>Css Grid Template</p>
+                          </td>
+                          <td>
+                            <span class="status-btn info-btn">Pending</span>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <div class="employee-image">
+                              <img src="{% static 'P_admin/assets/images/lead/lead-5.png'%}" alt="" />
+                            </div>
+                          </td>
+                          <td>
+                            <p>Esther Howard</p>
+                          </td>
+                          <td>
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td>
+                            <p>Admin Dashboard Design</p>
+                          </td>
+                          <td>
+                            <span class="status-btn close-btn">Close</span>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                        <tr>
+                          <td>
+                            <div class="employee-image">
+                              <img src="{% static 'P_admin/assets/images/lead/lead-6.png'%}" alt="" />
+                            </div>
+                          </td>
+                          <td>
+                            <p>Anee Doe</p>
+                          </td>
+                          <td>
+                            <p><a href="#0">yourmail@gmail.com</a></p>
+                          </td>
+                          <td>
+                            <p>Space Template Update</p>
+                          </td>
+                          <td>
+                            <span class="status-btn active-btn">Active</span>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- end table row -->
+                      </tbody>
+                    </table>
+                    <!-- end table -->
+                  </div>
+                </div>
+                <!-- end card -->
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== tables-wrapper end ========== -->
+        </div>
+        <!-- end container -->
+      </section>
+      <!-- ========== table components end ========== -->
+
+      <!-- ========== footer start =========== -->
+               <!-- end row -->
+        </div>
+        <!-- end container -->
+      </footer>
+      <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="{% static 'P_admin/assets/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/Chart.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/dynamic-pie-chart.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/moment.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/fullcalendar.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/jvectormap.min.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/world-merc.j'%}"></script>
+    <script src="{% static 'P_admin/assets/js/polyfill.js'%}"></script>
+    <script src="{% static 'P_admin/assets/js/main.js'%}"></script>
+  </body>
+</html>
