@@ -152,14 +152,18 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-light rounded h-100 d-flex align-items-right p-5">
-                        <form action="doctorhome">
+                        <form  method="POST">
+                            {% csrf_token %}
+                            {% for m in messages %}
+                            <h3>{{ m }}</h3>
+                            {% endfor %}
                             <div class="row g-3">
                               
                                 <div class="col-12 col-sm-10">
-                                    <input type="email" class="form-control border-0" placeholder="Email" style="height: 55px;">
+                                    <input type="email"   class="form-control border-0" name="email" placeholder="Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-10">
-                                    <input type="Password" class="form-control border-0" placeholder="Password" style="height: 55px;">
+                                    <input type="Password" class="form-control border-0" name="password" placeholder="Password" style="height: 55px;">
                                 </div>
                                  <div class="col-12 col-sm-6">
                                    

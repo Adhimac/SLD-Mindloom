@@ -7,4 +7,5 @@ urlpatterns = [
     path('Usertable',views.Usertable,name="Usertable"),
     path('Admin_login',views.Admin_login,name="Admin_login"),
     path('doctor_table',views.doctor_table,name="doctor_table"),
+    path('drlogdetails<int:id>',views.drlogdetails,name="drlogdetails"),
 ]

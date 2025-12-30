@@ -2,6 +2,14 @@ from django.contrib import messages
 from django.shortcuts import render,redirect
 from .models import *
 from user.models import user_registration
+
+from django.conf import settings
+from sld.settings import EMAIL_HOST_USER
+from . import forms 
+from django.core.mail import send_mail
+import random 
+import string 
+
 # Create your views here.
 
 def aadminhome(request):
@@ -29,8 +37,8 @@ def Usertable(request):
     Pro=user_registration.objects.all()
     return render(request,"p_admin/Usertable.html",{'P':Pro})
 def doctor_table(request):
-    DOC=doctor_registration.objects.all()
-    return render(request,"p_admin/doctor_table.html",{'D':DOC})
+    DR=doctor_registration.objects.all()
+    return render(request,"p_admin/doctor_table.html",{'D':DR})
 def Admin_login(request):
     if request.method=="POST":
             try:
@@ -44,3 +52,26 @@ def Admin_login(request):
             except table.DoesNotExist:
                messages.info(request,'Invalid Login')
     return render(request,"p_admin/Admin_login.html")
+
+def drlogdetails(request,id):
+    DR=doctor_registration.objects.get(id=id)
+    sub = forms.Subscribe()
+    if request.method == 'POST':
+        sub  = request.POST['email']
+        name= request.POST['name']
+        subject ='Hi, '+format(name)
+        recepient = str(sub)
+
+        characters = string.ascii_letters + string.digits + string.punctuation
+        Password = ''.join(random.choice(characters) for i in range(8))
+        doctor_registration.objects.filter(id=id).update(Password=Password)
+
+        message = (
+            "Welcome to our care.\n"
+            f"You can login with this password: {Password}"
+                        )
+        send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently=False)
+        return redirect('doctor_table')
+    return render(request,"p_admin/drlogdetails.html",{'D':DR})
+
+    

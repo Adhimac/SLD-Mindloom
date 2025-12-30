@@ -139,204 +139,37 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+  <tbody>
+  {% for slot in slots %}
+  <tr>
+    <td>{{ slot.day }}</td>
 
-      <!-- Template for each day -->
-      <tr data-day="Monday">
-        <td>Monday</td>
-        <td>
-          <span class="time-display">9:00 AM - 12:00 PM</span>
-          <div class="time-inputs">
-            <select name="monday_start_hour" class="start-hour">
-              <!-- Hours options -->
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="monday_start_min" class="start-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="monday_start_ampm" class="start-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-            <span>to</span>
-            <select name="monday_end_hour" class="end-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="monday_end_min" class="end-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="monday_end_ampm" class="end-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button type="button" class="edit-btn">Edit</button>
-          <button type="button" class="save-btn">Save</button>
-        </td>
-      </tr>
+    <td>
+      <span class="time-display">
+        {{ slot.start_time|time:"h:i A" }} - {{ slot.end_time|time:"h:i A" }}
+      </span>
+    </td>
 
-      <!-- Repeat for other days (Tuesday to Saturday) -->
-      <tr data-day="Tuesday">
-        <td>Tuesday</td>
-        <td>
-          <span class="time-display">1:00 PM - 5:00 PM</span>
-          <div class="time-inputs">
-            <select name="tuesday_start_hour" class="start-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="tuesday_start_min" class="start-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="tuesday_start_ampm" class="start-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-            <span>to</span>
-            <select name="tuesday_end_hour" class="end-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="tuesday_end_min" class="end-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="tuesday_end_ampm" class="end-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button type="button" class="edit-btn">Edit</button>
-          <button type="button" class="save-btn">Save</button>
-        </td>
-      </tr>
+    <td>
+      {% comment %} <a href="{% url 'edit_slot' slot.id %}" class="btn btn-warning btn-sm"> {% endcomment %}
+      <a href="" class="btn btn-warning btn-sm">
+        Edit
+      </a>
+      <a href="" class="btn btn-danger btn-sm">
+      {% comment %} <a href="{% url 'delete_slot' slot.id %}" class="btn btn-danger btn-sm"> {% endcomment %}
+        Delete
+      </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="3" class="text-center text-danger">
+      No consulting slots added
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
 
-      <tr data-day="Wednesday">
-        <td>Wednesday</td>
-        <td>
-          <span class="time-display">Not Available</span>
-          <div class="time-inputs">
-            <select name="wednesday_start_hour" class="start-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="wednesday_start_min" class="start-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="wednesday_start_ampm" class="start-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-            <span>to</span>
-            <select name="wednesday_end_hour" class="end-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="wednesday_end_min" class="end-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="wednesday_end_ampm" class="end-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button type="button" class="edit-btn">Edit</button>
-          <button type="button" class="save-btn">Save</button>
-        </td>
-      </tr>
-
-      <tr data-day="Thursday">
-        <td>Thursday</td>
-        <td>
-          <span class="time-display">10:00 AM - 2:00 PM</span>
-          <div class="time-inputs">
-            <select name="thursday_start_hour" class="start-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="thursday_start_min" class="start-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="thursday_start_ampm" class="start-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-            <span>to</span>
-            <select name="thursday_end_hour" class="end-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="thursday_end_min" class="end-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="thursday_end_ampm" class="end-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button type="button" class="edit-btn">Edit</button>
-          <button type="button" class="save-btn">Save</button>
-        </td>
-      </tr>
-
-      <tr data-day="Friday">
-        <td>Friday</td>
-        <td>
-          <span class="time-display">9:30 AM - 12:30 PM</span>
-          <div class="time-inputs">
-            <select name="friday_start_hour" class="start-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="friday_start_min" class="start-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="friday_start_ampm" class="start-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-            <span>to</span>
-            <select name="friday_end_hour" class="end-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="friday_end_min" class="end-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="friday_end_ampm" class="end-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button type="button" class="edit-btn">Edit</button>
-          <button type="button" class="save-btn">Save</button>
-        </td>
-      </tr>
-
-      <tr data-day="Saturday">
-        <td>Saturday</td>
-        <td>
-          <span class="time-display">Not Available</span>
-          <div class="time-inputs">
-            <select name="saturday_start_hour" class="start-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="saturday_start_min" class="start-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="saturday_start_ampm" class="start-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-            <span>to</span>
-            <select name="saturday_end_hour" class="end-hour">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-            </select> :
-            <select name="saturday_end_min" class="end-min">
-              <option>00</option><option>15</option><option>30</option><option>45</option>
-            </select>
-            <select name="saturday_end_ampm" class="end-ampm">
-              <option>AM</option><option>PM</option>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button type="button" class="edit-btn">Edit</button>
-          <button type="button" class="save-btn">Save</button>
-        </td>
-      </tr>
-
-    </tbody>
   </table>
 </form>
 </div>
