@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ disorder_name|title }} Test</title>
+    <style>
+        .qbox{border:1px solid #ddd;padding:15px;margin:12px 0;border-radius:10px;}
+        .opt{margin:6px 0;}
+        .btn{padding:10px 18px;border:none;background:#0d6efd;color:#fff;border-radius:8px;cursor:pointer;}
+    </style>
+</head>
+<body>
+
+<h2>{{ disorder_name|title }} Test</h2>
+<p>Each correct answer = <b>5 marks</b>. You can skip a question (leave it unselected).</p>
+
+<form method="POST" action="{% url 'submit_test' disorder_name=disorder_name %}">
+    {% csrf_token %}
+{% for item in questions %}
+  <div class="qbox">
+    <b>Q{{ forloop.counter }}.</b> {{ item.q }}
+
+    {% if item.image %}
+      <div style="margin:10px 0;">
+        <img src="{% static item.image %}"
+             alt="Question Image"
+             style="max-width:260px;border:1px solid #ddd;border-radius:8px;">
+      </div>
+    {% endif %}
+
+    <div style="margin-top:8px;">
+      {% for op in item.options %}
+        <div class="opt">
+          <label>
+            <input type="radio" name="q{{ forloop.parentloop.counter0 }}" value="{{ op }}">
+            {{ op }}
+          </label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
+
+    <!-- {% for item in questions %}
+        <div class="qbox">
+            <b>Q{{ forloop.counter }}.</b> {{ item.q }}
+
+            <div style="margin-top:8px;">
+                {% for op in item.options %}
+                    <div class="opt">
+                        <label>
+                            <input type="radio" name="q{{ forloop.parentloop.counter0 }}" value="{{ op }}">
+                            {{ op }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %} -->
+
+    <button type="submit" class="btn">Submit & Next</button>
+</form>
+
+</body>
+</html>

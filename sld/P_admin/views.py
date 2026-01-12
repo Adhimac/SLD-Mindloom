@@ -1,5 +1,6 @@
 from django.contrib import messages
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
+from P_admin.models import table,doctor_registration
 from .models import *
 from user.models import user_registration
 
@@ -33,6 +34,10 @@ def DR(request):
         return redirect("doctor_table")
         
      return render(request,"p_admin/DR.html")
+def delete_doctor(request, id):
+    doctor = get_object_or_404(doctor_registration, id=id)
+    doctor.delete()
+    return redirect('doctor_table')  # use your table page name
 def Usertable(request):
     Pro=user_registration.objects.all()
     return render(request,"p_admin/Usertable.html",{'P':Pro})

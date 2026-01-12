@@ -2,19 +2,26 @@ from django.shortcuts import render,redirect
 from P_admin.models import doctor_registration
 from datetime import time
 from .models import *
+from django.contrib import messages
 # Create your views here.
 def doctorlogin(request):
-    if request.method=="POST":
-           try:
-               email=request.POST.get("email")
-               password=request.POST.get("password")
-               log=doctor_registration.objects.get(Email=email,Password=password)
-               request.session['Email']=log.Email
-               request.session['id']=log.id
-               return redirect("doctorhome")
-           except doctor_registration.DoesNotExist:
-               messages.info(request,'Invalid Login')
-    return render(request,"Doctor/doctorlogin.html")
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        log = doctor_registration.objects.filter(
+            Email=email,
+            Password=password
+        ).first()
+
+        if log:
+            request.session['Email'] = log.Email
+            request.session['id'] = log.id
+            return redirect("doctorhome")
+        else:
+            messages.error(request, "Invalid Email or Password")
+
+    return render(request, "Doctor/doctorlogin.html")
 def doctorhome(request):
     return render(request,"Doctor/doctorhome.html")
 def Pat_Appoin(request):

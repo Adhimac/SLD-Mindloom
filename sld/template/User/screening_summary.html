@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screening Summary</title>
+    <style>
+        table{border-collapse:collapse;width:100%;}
+        th,td{border:1px solid #ddd;padding:10px;text-align:left;}
+        th{background:#f2f2f2;}
+        .tag{padding:4px 10px;border-radius:12px;display:inline-block;}
+        .normal{background:#d1e7dd;}
+        .problem{background:#f8d7da;}
+        .borderline{background:#fff3cd;}
+    </style>
+</head>
+<body>
+
+<h2>Screening Summary</h2>
+
+<table>
+    <tr>
+        <th>Disorder</th>
+        <th>Total</th>
+        <th>Answered</th>
+        <th>Correct</th>
+        <th>Wrong</th>
+        <th>Unanswered</th>
+        <th>Score</th>
+        <th>Status</th>
+    </tr>
+
+    {% for r in results %}
+    <tr>
+        <td>{{ r.get_disorder_display }}</td>
+        <td>{{ r.total_questions }}</td>
+        <td>{{ r.answered_count }}</td>
+        <td>{{ r.correct_count }}</td>
+        <td>{{ r.wrong_count }}</td>
+        <td>{{ r.unanswered_count }}</td>
+        <td>{{ r.score }}</td>
+        <td>
+            {% if r.status == "NORMAL" %}
+                <span class="tag normal">NORMAL</span>
+            {% elif r.status == "PROBLEM" %}
+                <span class="tag problem">PROBLEM</span>
+            {% else %}
+                <span class="tag borderline">BORDERLINE</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+{% if problem_disorders %}
+    <h3>Possible Issues Found In:</h3>
+    <ul>
+        {% for d in problem_disorders %}
+            <li>{{ d|title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>No “Problem” detected based on current rule.</h3>
+{% endif %}
+
+<br>
+<a href="{% url 'userhome' %}">Back to Home</a>
+
+</body>
+</html>

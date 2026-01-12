@@ -12,7 +12,7 @@ class doctor_registration(models.Model):
     LastName=models.CharField(max_length=25)
     Gender=models.CharField(max_length=10)
     Email=models.EmailField(max_length=50)
-    ContactNumber=models.CharField(max_length=10)
+    ContactNumber=models.IntegerField(max_length=10)
     Password=models.CharField(max_length=25,null=True)
     Address=models.CharField(max_length=50)
     Locality=models.CharField(max_length=50)

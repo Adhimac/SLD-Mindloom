@@ -327,18 +327,21 @@
                             <span class="status-btn active-btn">Active</span>
                           </td>
                           <td>
-                            <div class="action">
-                              <button class="text-danger">
-                                <i class="lni lni-trash-can"></i>
-                              </button>
-                            </div>
-                          </td>
+  <div class="action">
+    <a href="{% url 'delete_doctor' j.id %}" 
+       onclick="return confirm('Are you sure you want to delete this doctor?');"
+       class="text-danger">
+      <i class="lni lni-trash-can"></i>
+    </a>
+  </div>
+</td>
                           <td>
                           <div class="login">
   <a href="{% url 'drlogdetails' j.id %}">
     <button class="login-btn">click</button>
   </a>
 </div>
+</td>
 
 <style>
   .login-btn {

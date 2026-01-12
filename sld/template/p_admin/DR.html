@@ -212,10 +212,20 @@
                         </div>
                       </div>
                        <div class="col-12">
-                        <div class="input-style-1">
-                          <label>Contact Number</label>
-                          <input type="tel"  name="contactno"placeholder="Contact Number" />
-                        </div>
+                       <div class="input-style-1">
+  <label>Contact Number</label>
+  <input 
+    type="tel"
+    name="contactno"
+    placeholder="Contact Number"
+    pattern="[0-9]*"
+    inputmode="numeric"
+    maxlength="10"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+    required
+  />
+</div>
+
                       </div>
                        <div class="col-12">
                         <div class="input-style-1">

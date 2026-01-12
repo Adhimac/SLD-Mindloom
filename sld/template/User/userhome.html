@@ -88,14 +88,20 @@
                              <!-- Buttons -->
 <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
     <!-- Instructions Button -->
-    <a href="#instructions" class="btn btn-outline-light btn-lg px-4 shadow-sm btn-instructions">
-        <i class="fa fa-info-circle me-2"></i> Instructions
+    <a href="{% url 'start_screening' %}" class="btn btn-outline-light btn-lg px-4 shadow-sm btn-instructions">
+        <i class="fa fa-info-circle me-2"> Take Test</i> 
     </a>
+<a href="{% url 'reset_attempts' %}" class="btn btn-danger"
+   onclick="return confirm('Reset all 3 tests and allow re-attempt?');">
+  Reset Attempt
+</a>
+ 
+{% comment %} <a href="#instructions" class="btn btn-outline-light btn-lg px-4 shadow-sm btn-instructions">
+  Instructions
+</a> {% endcomment %}
 
     <!-- Take Test Button -->
-    <a href="test.html" class="btn btn-warning btn-lg px-5 shadow btn-test">
-        <i class="fa fa-clipboard-list me-2"></i> Take Test
-    </a>
+
 </div>
 
                            
@@ -154,15 +160,11 @@
 
 
     <!-- Service Start -->
-      <div id="instructions">
-    <!-- Instructions content here -->
-</div>
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                
-                <h1>Instructions</h1>
-            </div>
+<div id="instructions" class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+      <h1>Instructions</h1>
+    </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-light rounded h-100 p-5">

@@ -1,0 +1,14 @@
+<h2>{{ disorder.name }} Test</h2>
+<form method="POST">
+    {% csrf_token %}
+    {% for q in questions %}
+        <p><strong>{{ forloop.counter }}. {{ q.text }}</strong></p>
+        <label><input type="radio" name="{{ q.id }}" value="a"> {{ q.option_a }}</label><br>
+        <label><input type="radio" name="{{ q.id }}" value="b"> {{ q.option_b }}</label><br>
+        <label><input type="radio" name="{{ q.id }}" value="c"> {{ q.option_c }}</label><br><br>
+    {% endfor %}
+    <button type="submit">Submit Test</button>
+</form>
+{% if result %}
+    <h3>Your Result: {{ result }}</h3>
+{% endif %}
